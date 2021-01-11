@@ -20,10 +20,38 @@
 // Wait for the deviceready event before using any of Cordova's device APIs.
 // See https://cordova.apache.org/docs/en/latest/cordova/events/events.html#deviceready
 document.addEventListener('deviceready', onDeviceReady, false);
+document.getElementById('confirm-dialog').addEventListener('click', confirmDialog);
+document.getElementById('alert-dialog').addEventListener('click', alertDialog);
+document.getElementById('prompt-dialog').addEventListener('click', promptDialog);
+document.getElementById('beep-dialog').addEventListener('click', beepDialog);
 
 function onDeviceReady() {
     // Cordova is now initialized. Have fun!
 
     console.log('Running cordova-' + cordova.platformId + '@' + cordova.version);
     document.getElementById('deviceready').classList.add('ready');
+}
+
+function confirmDialog() {
+    navigator.notification.confirm("Are you sure you want to delete?", confirmCallback,"Are you sure?", ["NO", "YES"]);
+
+    function confirmCallback(index) {
+        navigator.notification.alert(`Button index num :  ${index}`, null,"Callback", "OK");
+    }
+}
+
+function alertDialog() {
+    navigator.notification.alert("Message", null,"Title", "OK");
+}
+
+function promptDialog() {
+    navigator.notification.prompt("What is your name?", promptCallback, "Are you a robot?", ["SEND"], null);
+
+    function promptCallback(value) {
+        navigator.notification.alert(value.input1, null, "Your name is:", "OK");
+    }
+}
+
+function beepDialog() {
+    navigator.notification.beep(2);
 }
