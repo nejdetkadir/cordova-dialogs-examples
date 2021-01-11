@@ -40,9 +40,11 @@
     <body>
         <div class="app">
             <h1>Apache Cordova</h1>
-            <div id="deviceready" class="blink">
-                <p class="event listening">Connecting to Device</p>
-                <p class="event received">Device is Ready</p>
+            <div id="deviceready">
+                <button class="btn primary" id="confirm-dialog">Confirm Dialog</button>
+                <button class="btn danger" id="alert-dialog">Alert Dialog</button>
+                <button class="btn warning" id="prompt-dialog">Prompt Dialog</button>
+                <button class="btn success" id="beep-dialog">Beep Dialog</button>
             </div>
         </div>
         <script src="cordova.js"></script>
